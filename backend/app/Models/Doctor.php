@@ -9,6 +9,9 @@ class Doctor extends Model
 {
     use HasFactory;
 
+    // Definindo os campos que podem ser preenchidos via atribuição em massa
+    protected $fillable = ['name', 'service_type_id'];
+
     // Definindo o relacionamento com ServiceType
     public function serviceType()
     {

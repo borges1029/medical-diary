@@ -16,14 +16,21 @@ class AvailableDateController extends Controller
     // Cria uma nova data disponível
     public function store(Request $request)
     {
+        // Validar a requisição
         $request->validate([
             'doctor_id' => 'required|exists:doctors,id',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
         ]);
 
-        return AvailableDate::create($request->all());
+        // Criar a nova data disponível
+        $availableDate = AvailableDate::create($request->all());
+
+        // Retornar a nova data disponível como resposta JSON
+        return response()->json($availableDate, 201);
     }
+
+
 
     // Mostra uma data disponível específica
     public function show($id)
